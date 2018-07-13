@@ -13,6 +13,8 @@
     {% csrf_token %}
     {{form.as_p}}   
 
+    <p> Want to change password?  <a style="color:dodgerblue"> <a href="{% url 'changepassword' %}"> Password Change</a>.</p>
+
     <div class="clearfix">
         <button type = "button" onclick="window.location.href='{% url 'welcome'%}'" > Cancel</button>
         <button type="submit" class="signupbtn">Update</button>
