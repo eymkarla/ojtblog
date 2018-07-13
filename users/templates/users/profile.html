@@ -21,22 +21,23 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 
 <!-- Icon Bar (Sidebar - hidden on small screens) -->
 <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+
   {% if user.image %}
   <img src="{{user.image.url}}" style="width:100%">
   {% endif %}
-  <a href="{% url 'welcome' %}" class="w3-bar-item w3-button w3-padding-large w3-black">
+  <a href="{% url 'index' %}" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
     <i class="fa fa-home w3-xxlarge"></i>
     <p>HOME</p>
   </a>
-  <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="{% url 'createpost' %}" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
     <i class="fa fa-edit w3-xxlarge"></i>
     <p>POST</p>
   </a>
-  <a href="#photos" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-archive w3-xxlarge"></i>
+  <a href="{% url 'archivelist' %}" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-eye w3-xxlarge"></i>
     <p>ARCHIVES</p>
   </a>
-  <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+  <a href="{% url 'accountsettings' %}" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
     <i class="fa fa-cog w3-xxlarge"></i>
     <p>SETTINGS</p>
   </a>
@@ -64,10 +65,30 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
   <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
     <h2 class="w3-text-light-grey">My Posts</h2>
     <hr style="width:200px" class="w3-opacity">
-    <p>Some text about me. Some text about me. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-      ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
-      adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    </p>
+
+    
+    <form method = "POST" action=" ">
+      {% csrf_token %}
+      
+        {% for post in posts %}
+          <div class="w3-container w3-white" >
+          <div class="w3-panel w3-topbar w3-bottombar w3-leftbar w3-rightbar w3-border w3-border-black">
+          <h2><b>{{post.title}}</b></h2>
+          <a href="{% url 'profile' %}">{{post.author}}</a>
+          <p>{{post.date_updated}}</p>
+          <p>{{post.slug}}</p>
+          <p>{{post.content}}</p>
+          <p>{{post.tags}}</p> 
+          <div align="right">
+        <p><a style="color:dodgerblue"> <a href="{% url 'unarchivepost' post.id%}" class="cancelbtn">Unarchive</a></p>
+
+        </div>
+      </div>
+      </div>
+      
+      {% endfor %}
+  </form>
+
    
   </div>
   
@@ -137,4 +158,3 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 
 </body>
 </html>
-

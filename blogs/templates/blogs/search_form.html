@@ -1,0 +1,9 @@
+{% block body %}
+ 
+ <div class = "col">
+    <form action="{% url 'search' %}" method = "GET">
+ 
+ <input type="text" name="q" >
+ <input type="submit" value="Search">   </form> 
+
+ {% endblock %}

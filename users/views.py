@@ -7,7 +7,6 @@ from django.contrib.auth import login,logout, authenticate
 from django.contrib.auth import update_session_auth_hash
 from django.urls import reverse
 
-
 def Register(request):
     form=UserSignup()
     if request.method=='POST' and request.POST.get('register')=='register':
@@ -39,7 +38,7 @@ def Signin(request):
             if user.is_authenticated:
                 return HttpResponseRedirect(reverse('welcome'))
     if request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('base'))                
+        return HttpResponseRedirect(reverse('base'))
     else:
         return render(request,'users/signin.html',{'form':form})
 
