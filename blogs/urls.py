@@ -2,8 +2,7 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
-<<<<<<< HEAD
-     
+
 urlpatterns = [
     path('createpost/', views.createpost, name='createpost'),
     path('index/', views.index, name='index'),
