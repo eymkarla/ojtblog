@@ -51,7 +51,7 @@ def post_details(request, post_id):
     return render(request, template, context)
 
 def search_form(request):
-    return render(request, 'blogs/index.html')
+    return render(request, 'blogs/search_form.html')
 
 def search(request):
     error = False
